@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    hostname: zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    env_file:
+      - .env
+    volumes:
+      - zk_data:/var/lib/zookeeper/data
+      - zk_log:/var/lib/zookeeper/log
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    hostname: kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    env_file:
+      - .env
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:7.5.0
+    hostname: schema-registry
+    container_name: schema-registry
+    ports:
+      - "8082:8082"
+    env_file:
+      - .env
+    depends_on:
+      - kafka
+
+  kafka-connect:
+    image: confluentinc/cp-kafka-connect:7.5.0
+    ports:
+      - "8083:8083"
+    env_file:
+      - .env
+    volumes:
+      - ./debezium-connector:/usr/share/java/debezium-connector
+    depends_on:
+      - kafka
+      - schema-registry
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui
+    container_name: kafka-ui
+    ports:
+      - "8081:8080"
+    env_file:
+      - .env
+
+volumes:
+  kafka_data:
+  zk_data:
+  zk_log:

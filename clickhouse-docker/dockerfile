@@ -1,0 +1,4 @@
+FROM clickhouse/clickhouse-server:24.4
+
+COPY generate-config.sh /docker-entrypoint-initdb.d/generate-config.sh
+RUN chmod +x /docker-entrypoint-initdb.d/generate-config.sh

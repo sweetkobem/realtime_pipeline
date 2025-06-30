@@ -1,0 +1,10 @@
+FROM apache/airflow:3.0.2
+
+RUN pip install --no-cache-dir \
+    clickhouse-connect \
+    trino
+
+USER root
+COPY airflow_init.sh /airflow_init.sh
+RUN chmod +x /airflow_init.sh
+USER airflow

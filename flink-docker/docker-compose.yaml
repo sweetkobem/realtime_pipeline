@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  jobmanager:
+    build: .
+    container_name: flink_jobmanager
+    ports:
+      - "8087:8081"  # Flink Web UI
+      - "6123:6123"  # JobManager RPC port
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+    command: jobmanager
+    volumes:
+      - ./flink-conf.yaml:/opt/flink/conf/flink-conf.yaml
+      - ./flink-scala-scripts:/opt/flink/scala
+      - ./flink-savepoints:/opt/flink/savepoints
+      - ./flink-checkpoints:/opt/flink/checkpoints
+
+  taskmanager:
+    build: .
+    depends_on:
+      - jobmanager
+    command: taskmanager
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+    volumes:
+      - ./flink-conf.yaml:/opt/flink/conf/flink-conf.yaml
+      - ./flink-scala-scripts:/opt/flink/scala
+      - ./flink-savepoints:/opt/flink/savepoints
+      - ./flink-checkpoints:/opt/flink/checkpoints

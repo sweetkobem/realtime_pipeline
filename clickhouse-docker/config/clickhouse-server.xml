@@ -1,0 +1,19 @@
+<clickhouse>
+  <listen_host>0.0.0.0</listen_host>
+
+  <tcp_port>9000</tcp_port>
+  <http_port>8123</http_port>
+  <interserver_http_port>9009</interserver_http_port>
+
+  <logger>
+    <level>information</level>
+    <log>/var/log/clickhouse-server/clickhouse.log</log>
+    <errorlog>/var/log/clickhouse-server/clickhouse.err.log</errorlog>
+    <size>1000M</size>
+    <count>10</count>
+  </logger>
+
+  <path>/var/lib/clickhouse/</path>
+  <tmp_path>/var/lib/clickhouse/tmp/</tmp_path>
+  <user_files_path>/var/lib/clickhouse/user_files/</user_files_path>
+</clickhouse>

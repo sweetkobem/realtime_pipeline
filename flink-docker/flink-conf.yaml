@@ -1,0 +1,19 @@
+state.backend: filesystem
+state.checkpoints.dir: file:///opt/flink/checkpoints
+execution.checkpointing.interval: 10000  # 10 seconds
+execution.checkpointing.timeout: 60000   # 60 seconds
+execution.checkpointing.mode: EXACTLY_ONCE
+execution.savepoint.dir: file:///opt/flink/savepoints
+
+jobmanager.rpc.address: jobmanager
+jobmanager.rpc.port: 6123
+jobmanager.memory.heap.size: 1024m
+jobmanager.memory.flink.size: 1600m
+rest.port: 8081
+
+taskmanager.memory.process.size: 2048m
+taskmanager.numberOfTaskSlots: 20
+parallelism.default: 2
+
+blob.server.port: 6124
+query.server.port: 6125

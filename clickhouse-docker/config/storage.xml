@@ -1,0 +1,23 @@
+<clickhouse>
+  <storage_configuration>
+    <disks>
+      <minio>
+        <type>s3</type>
+        <endpoint>{replace with your endpoint}</endpoint>
+        <access_key_id>{replace with your access_key_id}</access_key_id>
+        <secret_access_key>{replace with your secret_access_key}</secret_access_key>
+        <metadata_path>/var/lib/clickhouse/disks/minio/</metadata_path>
+      </minio>
+    </disks>
+
+    <policies>
+        <remote>
+            <volumes>
+                <remote>
+                    <disk>minio</disk>
+                </remote>
+            </volumes>
+        </remote>
+    </policies>
+  </storage_configuration>
+</clickhouse>

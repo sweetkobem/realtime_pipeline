@@ -1,0 +1,27 @@
+<dependencies>
+    <dependency>
+        <groupId>io.debezium</groupId>
+        <artifactId>debezium-api</artifactId>
+        <version>2.5.0.Final</version>
+    </dependency>
+    <dependency>
+        <groupId>io.debezium</groupId>
+        <artifactId>debezium-core</artifactId>
+        <version>2.5.0.Final</version>
+    </dependency>
+    <dependency>
+        <groupId>io.debezium</groupId>
+        <artifactId>debezium-connector-postgres</artifactId>
+        <version>2.5.0.Final</version>
+    </dependency>
+    <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>42.6.0</version>
+    </dependency>
+    <dependency>
+        <groupId>com.google.protobuf</groupId>
+        <artifactId>protobuf-java</artifactId>
+        <version>3.25.1</version>
+    </dependency>
+</dependencies>

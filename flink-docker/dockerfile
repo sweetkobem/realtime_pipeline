@@ -1,0 +1,11 @@
+FROM flink:1.18.0-scala_2.12-java11
+
+# Copy .env inside image
+COPY .env /opt/flink/.env
+
+# Copy flink-jars to /opt/flink/lib/
+COPY ./flink-jars/*.jar /opt/flink/lib/
+
+# Copy your management script inside image
+COPY manage_scala_jobs.sh /opt/flink/manage_scala_jobs.sh
+RUN chmod +x /opt/flink/manage_scala_jobs.sh
